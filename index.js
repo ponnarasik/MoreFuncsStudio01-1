@@ -5,8 +5,8 @@ let nums3 = [200, 5, 4, 10, 8, 5, -3.3, 4.4, 0];
 
 function getMinimum(arr){
   let i =0; let min = 0;
+   min=arr[0];
   for (i=0; i < arr.length; i++){
-    min=arr[0];
     if(min>arr[i]){
       min=arr[i];
       }
@@ -18,16 +18,16 @@ console.log(getMinimum(nums1));
 //arr , lastIndexSearched starts at arr.length -1, temp holds the min
 function getMinimumRec(arr, lastIndexSearched, min){
 if(lastIndexSearched < 0){
-return;
+return min;
 }
 
 if(arr[lastIndexSearched] < min){
-  return (getMinimum(arr, lastIndexSearched - 1, arr[lastIndexSearched]) )
+  min = arr[lastIndexSearched];
 }
-return ( getMinimum(arr, lastIndexSearched - 1, min) )
+return getMinimumRec(arr, lastIndexSearched - 1, min);
 }
 
-console.log(getMinimumRec(nums1));
+console.log(getMinimumRec(nums1, nums1.length -1, nums1[nums1.length -1]));
 
 
 //Sample arrays for testing:
